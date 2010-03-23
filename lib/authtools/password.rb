@@ -17,7 +17,12 @@ module Authtools
       hash = self.hash(password, salt)
       self.store(hash, salt)
     end
-    alias_method :new, :generate
+
+    # Alias for generate method
+    #
+    def new(password)
+      generate(password)
+    end
   
     # Checks the password against the stored password.
     #

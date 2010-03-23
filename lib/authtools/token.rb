@@ -14,7 +14,12 @@ module Authtools
       hash << salt
       hash.to_s
     end
-    alias_method :new, :generate
+
+    # Alias for generate method.
+    #
+    def new(size=SHORT)
+      generate(size)
+    end
     
     # Shortcut for generate 256 bit token.
     #
