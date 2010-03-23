@@ -1,0 +1,6 @@
+Authtools changelog.
+
+v0.1 [23.03.2010]
+* Generating password hash
+* Comparing password strings with stored hash 
+* Generating unique tokens
