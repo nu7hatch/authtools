@@ -6,7 +6,7 @@ module Authtools
     # Generates a new salt and rehashes the password. Returns mixed hash.
     #
     # == Examples
-    #   store = Auth.generate('mysecret') 
+    #   store = Authtools::Password.generate('mysecret') 
     #     # => "f7d8f299e342168b7a8b0aeece32e090c4acced13a6bd7f2b26fc
     #     # 88251f550943820d190df00a87d20b7bc00cee332c48f9c4953793837
     #     # 2a6c4fbcbe5d3944ccr1x6DlrfTf6OUrwl6ohoivxN2fAQiblav1sLyd9
@@ -17,13 +17,14 @@ module Authtools
       hash = self.hash(password, salt)
       self.store(hash, salt)
     end
+    alias_method :new, :generate
   
     # Checks the password against the stored password.
     #
     # == Examples
     #   # In `store` is hash generated before (see `generate` method).
-    #   Auth::Password.check('mysecret', store) # => true
-    #   Auth::Password.check('fake', store)     # => false
+    #   Authtools::Password.check('mysecret', store) # => true
+    #   Authtools::Password.check('fake', store)     # => false
     #  
     def self.check(password, store)
       hash = self.get_hash(store)
