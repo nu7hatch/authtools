@@ -13,7 +13,7 @@ module Authtools
     #     # z7PFaQgQH3XxTA0BuMAbFRmMM"
     #   
     def self.generate(password)
-      salt = self.salt
+      salt = Authtools::Common.salt
       hash = self.hash(password, salt)
       self.store(hash, salt)
     end

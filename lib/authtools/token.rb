@@ -11,7 +11,7 @@ module Authtools
     #
     def self.generate(size=SHORT)
       hash = Digest::SHA2.new(size)
-      hash << salt
+      hash << Authtools::Common.salt
       hash.to_s
     end
 
@@ -38,9 +38,5 @@ module Authtools
     def self.long
       self.generate(LONG)
     end
-    
-    protected
-    
-    include Authtools::Common
   end
 end
