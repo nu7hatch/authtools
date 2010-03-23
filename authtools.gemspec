@@ -22,9 +22,10 @@ h or unique token and check if specified password string is valid for stored has
      "LICENSE",
      "README.rdoc",
      "Rakefile",
-     "lib/common.rb",
-     "lib/password.rb",
-     "lib/token.rb"
+     "authtools.gemspec",
+     "lib/authtools/common.rb",
+     "lib/authtools/password.rb",
+     "lib/authtools/token.rb"
   ]
   s.homepage = %q{http://github.com/kriss/authtools}
   s.rdoc_options = ["--charset=UTF-8"]
