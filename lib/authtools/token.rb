@@ -3,13 +3,15 @@ require 'authtools/common'
 
 module Authtools
   module Token
+    extend self
+      
     SHORT = 256
     MEDIUM = 384
     LONG = 512
     
     # Generates new token with specified size.
     #
-    def self.generate(size=SHORT)
+    def generate(size=SHORT)
       hash = Digest::SHA2.new(size)
       hash << Authtools::Common.salt
       hash.to_s
@@ -23,20 +25,20 @@ module Authtools
     
     # Shortcut for generate 256 bit token.
     #
-    def self.short
-      self.generate(SHORT)
+    def short
+      generate(SHORT)
     end
     
     # Shortcut for generate 384 bit token.
     #
-    def self.medium
-      self.generate(MEDIUM)
+    def medium
+      generate(MEDIUM)
     end
     
     # Shortcut for generate 512 bit token.
     #
-    def self.long
-      self.generate(LONG)
+    def long
+      generate(LONG)
     end
   end
 end

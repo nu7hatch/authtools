@@ -3,6 +3,9 @@ require 'authtools/common'
 
 module Authtools
   module Password
+    extend Authtools::Common
+    extend self
+    
     # Generates a new salt and rehashes the password. Returns mixed hash.
     #
     # == Examples
@@ -12,10 +15,10 @@ module Authtools
     #     # 2a6c4fbcbe5d3944ccr1x6DlrfTf6OUrwl6ohoivxN2fAQiblav1sLyd9
     #     # z7PFaQgQH3XxTA0BuMAbFRmMM"
     #   
-    def self.generate(password)
+    def generate(password)
       salt = Authtools::Common.salt
       hash = self.hash(password, salt)
-      self.store(hash, salt)
+      store(hash, salt)
     end
 
     # Alias for generate method
@@ -31,9 +34,9 @@ module Authtools
     #   Authtools::Password.check('mysecret', store) # => true
     #   Authtools::Password.check('fake', store)     # => false
     #  
-    def self.check(password, store)
-      hash = self.get_hash(store)
-      salt = self.get_salt(store)
+    def check(password, store)
+      hash = get_hash(store)
+      salt = get_salt(store)
       if self.hash(password, salt) == hash
         true
       else
@@ -41,31 +44,27 @@ module Authtools
       end
     end
   
-    protected
-    
-    include Authtools::Common
-  
     # Generates a 128 character hash.
     #
-    def self.hash(password, salt)
+    def hash(password, salt)
       Digest::SHA512.hexdigest("#{password}:#{salt}")
     end
   
     # Mixes the hash and salt together for storage.
     # 
-    def self.store(hash, salt)
+    def store(hash, salt)
       hash + salt
     end
   
     # Gets the hash from a stored password.
     # 
-    def self.get_hash(store)
+    def get_hash(store)
       store[0..127]
     end
   
     # Gets the salt from a stored password.
     #
-    def self.get_salt(store)
+    def get_salt(store)
       store[128..192]
     end
   end
