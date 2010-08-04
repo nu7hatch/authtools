@@ -3,6 +3,7 @@ require 'authtools/common'
 
 module Authtools
   module Token
+    extend Common
     extend self
       
     SHORT = 256
@@ -13,7 +14,7 @@ module Authtools
     #
     def generate(size=SHORT)
       hash = Digest::SHA2.new(size)
-      hash << Authtools::Common.salt
+      hash << self.salt
       hash.to_s
     end
 

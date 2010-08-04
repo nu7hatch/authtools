@@ -1,6 +1,13 @@
 Authtools changelog.
 
-v0.1 [23.03.2010]
+v0.2.0 [4.07.2010]
+* Improvements in implementation
+* Minor bug fixes
+* Added main file: lib/authtools.rb
+* Added VERSION file
+* Created TODO list
+
+v0.1.0 [23.03.2010]
 * Generating password hash
 * Comparing password strings with stored hash 
 * Generating unique tokens

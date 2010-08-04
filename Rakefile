@@ -5,7 +5,6 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
     gemspec.name = "authtools"
-    gemspec.version = "0.1.3"
     gemspec.summary = "Usefull staff for tokens, passwords and authorization"
     gemspec.description = "Thanks to authtools you can easy generate salted password has
 h or unique token and check if specified password string is valid for stored hash..."

@@ -3,7 +3,7 @@ require 'authtools/common'
 
 module Authtools
   module Password
-    extend Authtools::Common
+    extend Common
     extend self
     
     # Generates a new salt and rehashes the password. Returns mixed hash.
@@ -16,7 +16,7 @@ module Authtools
     #     # z7PFaQgQH3XxTA0BuMAbFRmMM"
     #   
     def generate(password)
-      salt = Authtools::Common.salt
+      salt = self.salt
       hash = self.hash(password, salt)
       store(hash, salt)
     end
