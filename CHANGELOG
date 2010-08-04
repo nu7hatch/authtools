@@ -1,5 +1,12 @@
 Authtools changelog.
 
+v0.3.0 [4.07.2010]
+* Added specs
+* Added symbolic names for token sizes (:tiny, :short, :medium, :long)
+* Added tiny (128bit) md5-like token
+* Minor improvments
+* TODO empty 
+
 v0.2.0 [4.07.2010]
 * Improvements in implementation
 * Minor bug fixes
