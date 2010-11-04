@@ -1,43 +1,39 @@
-require 'rubygems'
-require 'rake'
+# -*- ruby -*-
+$:.unshift(File.expand_path('../lib', __FILE__))
+require 'authtools/version'
+require 'rspec/core/rake_task'
+require 'rake/rdoctask'
 
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gemspec|
-    gemspec.name = "authtools"
-    gemspec.summary = "Usefull staff for tokens, passwords and authorization"
-    gemspec.description = "Thanks to authtools you can easy generate salted password has
-h or unique token and check if specified password string is valid for stored hash..."
-    gemspec.email = "kriss.kowalik@gmail.com"
-    gemspec.homepage = "http://github.com/kriss/authtools"
-    gemspec.authors = ["Kris Kowalik"]
-  end
-rescue LoadError
-  puts "Jeweler not available. Install it with: gem install jeweler"
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.pattern = 'spec/**/*_spec.rb'
+  t.rspec_opts = %q[-c -b]
 end
 
-require 'spec/rake/spectask'
-Spec::Rake::SpecTask.new(:spec) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.spec_files = FileList['spec/**/*_spec.rb']
+RSpec::Core::RakeTask.new(:rcov) do |t|
+  t.rcov = true
+  t.rspec_opts = %q[-c -b]
+  t.rcov_opts = %q[-T -x "spec"]
 end
 
-Spec::Rake::SpecTask.new(:rcov) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rcov = true
+Rake::RDocTask.new do |rdoc|
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "Authtools #{Authtools.version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
 end
-
-task :spec => :check_dependencies
 
 task :default => :spec
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+desc "Build current version as a rubygem"
+task :build do
+  `gem build authtools.gemspec`
+  `mv authtools-*.gem pkg/`
+end
 
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "authtools2 #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+desc "Relase current version to rubygems.org"
+task :release => :build do
+  `git tag -am "Version bump to #{Authtools.version}" v#{Authtools.version}`
+  `git push origin master`
+  `git push origin master --tags`
+  `gem push pkg/authtools-#{Authtools.version}.gem`
 end

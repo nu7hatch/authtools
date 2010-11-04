@@ -1,16 +1,21 @@
-Usefull stuff for tokens, passwords and authorization.
+= Authtools
+
+Usefull stuff for unique tokens and secured password hashes generation.
 
 == Examples
 
-  # Generating unique token:
+Generating an unique token:
+
   Authtools::Token.short
   Authtools::Token.medium
   Authtools::Token.new(Authtools::Token::LONG)
 
-  # Hashing password
+Hashing password:
+
   store = Authtools::Password.generate('secret')
 
-  # Checking password
+Validating password:
+
   Authtools::Password.check('secret', store)
 
 == Note on Patches/Pull Requests
@@ -26,4 +31,9 @@ self I can ignore when I pull)
 
 == Copyright
 
-Copyright (c) 2010 Kris Kowalik. See LICENSE for details.
+Copyleft 2010 Chris Kowalik. WTFPL Baby!
+
+DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+0. You just DO WHAT THE FUCK YOU WANT TO. 
