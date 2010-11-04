@@ -8,7 +8,7 @@ Generating an unique token:
 
   Authtools::Token.short
   Authtools::Token.medium
-  Authtools::Token.new(Authtools::Token::LONG)
+  Authtools::Token.new(:long)
 
 Hashing password:
 
