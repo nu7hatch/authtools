@@ -37,11 +37,7 @@ module Authtools
     def check(password, store)
       hash = get_hash(store)
       salt = get_salt(store)
-      if self.hash(password, salt) == hash
-        true
-      else
-        false
-      end
+      self.hash(password, salt) == hash
     end
   
     # Generates a 128 character hash.
